@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     flex: 1,
-    marginLeft: 10
+    marginLeft: 10,
+    color: '#fff'
   }
 })
 
