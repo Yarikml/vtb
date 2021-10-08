@@ -13,3 +13,4 @@ const InitScreen: React.FunctionComponent<Props> = () => {
   )
 }
 export default InitScreen;
+//цель - достичь инвестиционной выгоды быстрее соперника

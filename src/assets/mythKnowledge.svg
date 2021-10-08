@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+
+	<radialGradient id="rg" cx="32" cy="32" r="32" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#0EF"/>
+		<stop  offset="1" style="stop-color:#026"/>
+		<animate attributeName="cy" dur="8s" values="32;44;28;32" repeatCount="indefinite"/>
+		<animate attributeName="r" dur="6s" values="32;48;32" repeatCount="indefinite"/>
+	</radialGradient>
+
+	<circle fill="url(#rg)" cx="48" cy="48" r="48"/>
+	<g fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round">
+		<polyline points="32,66 32,44">
+			<animate attributeName="points" dur="2s" values="32,66 32,44;32,66 32,28;32,66 32,48;32,66 32,56;32,66 32,44" repeatCount="indefinite" begin="0"/>
+		</polyline>
+		<polyline points="48,66 48,24">
+			<animate attributeName="points" dur="2s" values="48,66 48,24;48,66 48,40;48,66 48,20;48,66 48,24" repeatCount="indefinite" begin="0"/>
+		</polyline>
+		<polyline points="64,66 64,36">
+			<animate attributeName="points" dur="2s" values="64,66 64,36;64,66 64,24;64,66 64,44;64,66 64,36" repeatCount="indefinite" begin="0"/>
+		</polyline>
+		<polyline stroke="#F55" stroke-width="0" points="72.5,20 72.5,20">
+			<animate attributeName="points" dur=".5s" to="23.5,76 72.5,20" fill="freeze" begin="1s"/>
+			<animate attributeName="stroke-width" dur=".1s" to="4.5" fill="freeze" begin="1s"/>
+		</polyline>
+	</g>
+</svg>
