@@ -1,11 +1,13 @@
 import * as React from "react";
 import { View, StyleSheet, Text } from "react-native";
 // @ts-ignore
-import MythRich from "../assets/mythKnowledge.svg"
+import MythRich from "../assets/phobia.svg"
+import ImgMyth from "../assets/phobia.svg";
+import ImgTruth from "../assets/truth.svg";
 
 
 interface Props {
-  icon: string,
+  icon: number,
   text: string
 }
 
@@ -31,7 +33,11 @@ const styles = StyleSheet.create({
 const MythCard: React.FunctionComponent<Props> = ({ icon, text}) => {
   return (
     <View style={styles.cardContainer}>
-      <MythRich width={48} height={48} />
+      {{
+        1: <ImgMyth width={48} height={48}/>,
+        2: <ImgTruth width={48} height={48}/>,
+      }[icon]
+      }
       <Text style={styles.text}>{text}</Text>
     </View>
   )

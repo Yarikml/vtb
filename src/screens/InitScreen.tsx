@@ -5,9 +5,10 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  Button, ImageBackground,
+  Button, Pressable,
 } from 'react-native';
 import ItemGoal from '../components/ItemGoal';
+import MyButton from '../components/Button';
 import Slider from '@react-native-community/slider';
 import {useNavigation} from '@react-navigation/native';
 
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: 10,
-    paddingTop: 75,
+    paddingTop: 65,
     paddingBottom: 30,
   },
 
@@ -117,16 +118,17 @@ fontWeight:'bold',
 
   button: {
     height: 60,
-    paddingTop: 20,
-    paddingBottom: 40,
-    backgroundColor: '#7EABF0',
+    alignItems:'center',
+    justifyContent:'center',
+    padding:8,
+    backgroundColor: '#3A83F1',
     borderRadius: 20,
     marginVertical: 20,
+
   },
 
 });
 
-const backgroundURL = '../assets/background.png';
 
 const InitScreen: React.FunctionComponent<Props> = () => {
 
@@ -202,16 +204,13 @@ const InitScreen: React.FunctionComponent<Props> = () => {
         <Text style={styles.text}>Выбери сложность</Text>
         <View style={styles.goals}>
           {goals.map(goalCard => (
-              <ItemGoal idImg={goalCard.imgId} goal={goalCard.goal} />
+              <ItemGoal id={goalCard.id} idImg={goalCard.imgId} goal={goalCard.goal} />
           ))}
         </View>
       </View>
 
+      <MyButton nextState={'MythsScreen'} text={'Начинаем'}/>
 
-      <Button
-        title="Начинаем"
-        onPress={() => navigation.navigate('MythsScreen')}
-      />
     </ScrollView>
 
 
