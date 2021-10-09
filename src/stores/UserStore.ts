@@ -8,17 +8,22 @@ export interface Paper {
 class UserStore {
   public userPapers: Paper[] = [];
   public companies: Set<string> = new Set<string>();
+  public money: number = 1000;
+  public moneyGoal: number = 10000;
   constructor() {
     makeObservable(this, {
       userPapers: observable,
       addPaperToUser: action,
       companies: observable,
+      money: observable,
+      moneyGoal: observable,
       getCompanies: computed,
     });
   }
 
   addPaperToUser(paper: Paper) {
     this.companies.add(paper.company);
+    this.money = this.money - paper.price
     this.userPapers.push(paper);
   }
 

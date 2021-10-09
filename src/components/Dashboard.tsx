@@ -38,7 +38,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const Dashboard: React.FunctionComponent = () => {
+interface Props {
+  money: number;
+  moneyGoal: number;
+}
+
+const Dashboard: React.FunctionComponent<Props> = ({money, moneyGoal}) => {
+  const getProgress = (money: number, moneyGoal: number): number => {
+    let progress = (money * 100) / moneyGoal / 100;
+    return progress;
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.goal}>
@@ -52,13 +62,13 @@ const Dashboard: React.FunctionComponent = () => {
       </View>
       <Progress.Bar
         style={styles.progressBar}
-        progress={0.3}
+        progress={getProgress(money, moneyGoal)}
         width={null}
         color={'blue'}
       />
       <View style={styles.money}>
         <Text style={styles.moneyText}>Ваши финансы</Text>
-        <Text style={styles.moneyText}>100000</Text>
+        <Text style={styles.moneyText}>{money}p</Text>
       </View>
     </View>
   );

@@ -24,7 +24,7 @@ interface Props {
 const GameScreen: React.FunctionComponent<Props> = ({user}) => {
   return (
     <View style={styles.container}>
-      <Dashboard />
+      <Dashboard money={user.money} moneyGoal={user.moneyGoal} />
       <View style={styles.gameScreen}>
         <Button
           title={'Tesla'}
