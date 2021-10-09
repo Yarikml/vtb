@@ -2,88 +2,94 @@ import * as React from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
 import MythCard from '../components/MythCard';
 import Helper from '../components/Helper';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
+
 import {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import MyButton from "../components/Button";
+import Background from "../assets/backgroundMythScreen.svg";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 140,
     backgroundColor: '#172030',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
+    padding: 16,
+  },
+  background: {
+    position:'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  textTitle: {
+    marginHorizontal:24,
+    paddingBottom:36,
+    marginTop:12,
+    alignItems:'center',
   },
   text: {
-    color: 'red',
+    flexWrap: 'wrap',
+    color: '#C2D4EF',
+    fontSize: 24,
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    lineHeight: 40,
+    letterSpacing: 0,
   },
-  animated: {
-    position: 'absolute',
-    zIndex: 10,
-    top: -70,
-    left: 25,
+  textView: {
+    marginHorizontal:24,
+    paddingBottom:36,
+    marginTop:24,
+    alignItems:'center',
   },
-  box: {
-    height: 50,
-    width: 50,
-    backgroundColor: 'yellow',
-  },
+
 });
 
 const MythsScreens: React.FunctionComponent = () => {
   const myths = [
     {
       id: 1,
-      text: 'Инвестциии - это сложно',
-      icon: 'df',
+      text: '..большой стартовый капитал?',
+      icon: 1,
     },
     {
       id: 2,
-      text: 'Я могу всё потерять - это опано для моего капиала',
-      icon: 'df',
+      text: '..сложно и непонятно?',
+      icon: 1,
     },
     {
       id: 3,
-      text: 'Этим занимаются только те, у кого есть деньги',
-      icon: 'df',
+      text: '..это много времени?',
+      icon: 1,
+    },
+    {
+      id: 4,
+      text: '..опасно?',
+      icon: 1,
     },
   ];
-  useEffect(() => {
-    setTimeout(() => {
-      offset.value = 80;
-    }, 3000);
-  });
-  const offset = useSharedValue(0);
-  const defaultSpringStyles = useAnimatedStyle(() => {
-    return {
-      transform: [{translateY: withSpring(offset.value)}],
-    };
-  });
+
+
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.animated, defaultSpringStyles]}>
-        <Helper text={'Hello, I think that many people have bounds in inv'} />
-      </Animated.View>
-      {myths.map(myth => (
-        <MythCard key={myth.id} icon={myth.icon} text={myth.text} />
-      ))}
-      <Button
-        title={'push'}
-        onPress={() => {
-          requestAnimationFrame(() => {
-            offset.value = -80;
+      <Background style={styles.background}/>
+      <View style={styles.textTitle}>
+        <Text style={styles.text}>
+          Ты тоже думаешь,
+        </Text>
+        <Text style={styles.text}>
+          что инвестиции - это...
+        </Text>
+      </View>
+      <View style={styles.textView}>
+        {myths.map(myth => (
+            <MythCard key={myth.id} icon={1} text={myth.text} />
+        ))}
+      </View>
 
-            navigation.navigate('CardSetSelector');
-          });
-        }}
-      />
+      <MyButton nextState={'TruthScreen'} text={'А так ли это на самом деле?'}/>
+
     </View>
   );
 };

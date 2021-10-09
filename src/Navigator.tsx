@@ -4,6 +4,7 @@ import CardSetSelector from './screens/CardSetSelector';
 import GameScreen from './screens/GameScreen';
 import InitScreen from './screens/InitScreen';
 import MythsScreens from './screens/MythsScreens';
+import TruthScreen from './screens/TruthScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,11 @@ const Navigator: React.FunctionComponent = () => {
         component={MythsScreens}
         options={{headerShown: false}}
       />
+        <Stack.Screen
+            name={'TruthScreen'}
+            component={TruthScreen}
+            options={{headerShown: false}}
+        />
       <Stack.Screen
         name={'CardSetSelector'}
         component={CardSetSelector}
