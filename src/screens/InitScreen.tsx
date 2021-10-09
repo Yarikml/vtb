@@ -5,34 +5,34 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  Button, Pressable,
+  Button,
+  Pressable,
 } from 'react-native';
 import ItemGoal from '../components/ItemGoal';
 import MyButton from '../components/Button';
 import Slider from '@react-native-community/slider';
 import {useNavigation} from '@react-navigation/native';
 
-import Logo from "../assets/logo.svg";
-import Back from "../assets/back.svg";
-import Animated from "react-native-reanimated";
+import Logo from '../assets/logo.svg';
+import Back from '../assets/back.svg';
+import Animated from 'react-native-reanimated';
 
-import {useState} from "react";
-import MythCard from "../components/MythCard";
-
+import {useState} from 'react';
+import MythCard from '../components/MythCard';
 
 interface Props {}
 
 const styles = StyleSheet.create({
   container: {
-   flex:1
+    flex: 1,
   },
   background: {
-    position:'absolute',
+    position: 'absolute',
     width: '100%',
     height: '100%',
   },
   back: {
-    position:'absolute',
+    position: 'absolute',
     width: '100%',
     height: '100%',
   },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     color: '#C2D4EF',
     fontFamily: 'Roboto',
     fontStyle: 'normal',
-fontWeight:'bold',
+    fontWeight: 'bold',
     paddingBottom: 40,
     textAlign: 'center',
     paddingLeft: 25,
@@ -96,12 +96,11 @@ fontWeight:'bold',
   input: {
     width: '90%',
     height: 52,
-    backgroundColor:'#7EABF0',
+    backgroundColor: '#7EABF0',
     borderRadius: 20,
-    padding:10,
-    color:'#172030',
-    fontSize:24,
-
+    padding: 10,
+    color: '#172030',
+    fontSize: 24,
   },
   slider: {
     width: '90%',
@@ -118,39 +117,35 @@ fontWeight:'bold',
 
   button: {
     height: 60,
-    alignItems:'center',
-    justifyContent:'center',
-    padding:8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 8,
     backgroundColor: '#3A83F1',
     borderRadius: 20,
     marginVertical: 20,
-
   },
-
 });
 
-
 const InitScreen: React.FunctionComponent<Props> = () => {
-
   const goals = [
     {
-      id:1,
-      imgId:1,
+      id: 1,
+      imgId: 1,
       goal: '100 000',
     },
     {
-      id:2,
-      imgId:2,
+      id: 2,
+      imgId: 2,
       goal: '500 000',
     },
     {
-      id:3,
-      imgId:3,
+      id: 3,
+      imgId: 3,
       goal: '1 000 000',
     },
     {
-      id:4,
-      imgId:4,
+      id: 4,
+      imgId: 4,
       goal: '7 000 000',
     },
   ];
@@ -158,8 +153,8 @@ const InitScreen: React.FunctionComponent<Props> = () => {
   const [sliderValue, setSliderValue] = useState(5000);
 
   return (
-      <ScrollView>
-        <Back style={styles.background}/>
+    <ScrollView>
+      <Back style={styles.background} />
 
       <View style={styles.logo}>
         <Logo width={175.44} height={60.08} />
@@ -176,13 +171,13 @@ const InitScreen: React.FunctionComponent<Props> = () => {
 
       <View style={styles.blockQuest}>
         <Text style={styles.text}>Как тебя зовут?</Text>
-        <TextInput style={styles.input}
-                   placeholder="Enter your name"
-                   placeholderTextColor="#C2D4EF"
-        maxLength={15}
-        textAlign={'center'}/>
-
-
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your name"
+          placeholderTextColor="#C2D4EF"
+          maxLength={15}
+          textAlign={'center'}
+        />
       </View>
 
       <View style={styles.blockQuest}>
@@ -196,7 +191,6 @@ const InitScreen: React.FunctionComponent<Props> = () => {
           minimumTrackTintColor="#7EABF0"
           maximumTrackTintColor="rgba(126, 171, 240, 0.5)"
           value={sliderValue}
-
         />
       </View>
 
@@ -204,16 +198,17 @@ const InitScreen: React.FunctionComponent<Props> = () => {
         <Text style={styles.text}>Выбери сложность</Text>
         <View style={styles.goals}>
           {goals.map(goalCard => (
-              <ItemGoal id={goalCard.id} idImg={goalCard.imgId} goal={goalCard.goal} />
+            <ItemGoal
+              id={goalCard.id}
+              idImg={goalCard.imgId}
+              goal={goalCard.goal}
+            />
           ))}
         </View>
       </View>
 
-      <MyButton nextState={'MythsScreen'} text={'Начинаем'}/>
-
+      <MyButton nextState={'MythsScreen'} text={'Начинаем'} />
     </ScrollView>
-
-
   );
 };
 export default InitScreen;

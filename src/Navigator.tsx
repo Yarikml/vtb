@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 
 const Navigator: React.FunctionComponent = () => {
   return (
-    <Stack.Navigator initialRouteName={'GameScreen'}>
+    <Stack.Navigator initialRouteName={'Init'}>
       <Stack.Screen
         name={'Init'}
         component={InitScreen}
@@ -21,11 +21,11 @@ const Navigator: React.FunctionComponent = () => {
         component={MythsScreens}
         options={{headerShown: false}}
       />
-        <Stack.Screen
-            name={'TruthScreen'}
-            component={TruthScreen}
-            options={{headerShown: false}}
-        />
+      <Stack.Screen
+        name={'TruthScreen'}
+        component={TruthScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name={'CardSetSelector'}
         component={CardSetSelector}
