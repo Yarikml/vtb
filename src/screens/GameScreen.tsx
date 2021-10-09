@@ -24,7 +24,7 @@ import PaperBall from '../components/Paper';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     backgroundColor: '#172030',
     flexDirection: 'column',
   },
@@ -111,7 +111,8 @@ const GameScreen: React.FunctionComponent<Props> = ({user}) => {
   return (
     <View style={styles.container}>
       <Dashboard money={user.money} moneyGoal={user.moneyGoal} />
-      <Button onPress={() => {}} title="Share" />
+      <BottomPanel userPapers={user.userPapers} companies={user.getCompanies} />
+
       <View style={styles.gameScreen}>
         <Text>{currentPaper.company}</Text>
 
@@ -121,7 +122,7 @@ const GameScreen: React.FunctionComponent<Props> = ({user}) => {
             price={ball.price}
             onPress={() => {
               setPaper(ball);
-              setVisible(true)
+              setVisible(true);
             }}
           />
         ))}
@@ -132,7 +133,6 @@ const GameScreen: React.FunctionComponent<Props> = ({user}) => {
         onPress={() => setVisible(false)}
         currentPaper={currentPaper}
       />
-      <BottomPanel userPapers={user.userPapers} companies={user.getCompanies} />
     </View>
   );
 };

@@ -4,12 +4,10 @@ import {Paper} from '../stores/UserStore';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
     backgroundColor: '#1B2B46',
     opacity: 0.9,
-    marginTop: 'auto',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "column",
+    width: 50
   },
   company: {
     color: '#fff',

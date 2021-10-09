@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderRadius: 50,
     position: 'absolute',
-    height: 50,
-    width: 50,
-    padding: 8,
+    height: 25,
+    width: 25,
+    padding: 3,
   },
   icon: {
     flex: 1,

@@ -17,7 +17,7 @@ const Tab = createMaterialTopTabNavigator();
 
 const styles = StyleSheet.create({
   dialogContainer: {
-    maxHeight: '50%',
+    maxHeight: '30%',
   },
 });
 
@@ -28,31 +28,28 @@ const TradeDialog: React.FunctionComponent<Props> = ({
   currentPaper,
 }) => {
   return (
-    <Dialog.Container
-      useNativeDriver={true}
-      visible={isVisible}
-      onBackdropPress={onPress}
-      contentStyle={{maxHeight: '60%'}}>
-      <Tab.Navigator>
-        <Tab.Screen
-          name={'Продать'}
-          children={() => (
-            <SellTab papers={papersByCompony} onPress={onPress}               currentPaper={currentPaper}
-            />
-          )}
-        />
-        <Tab.Screen
-          name={'Купить'}
-          children={() => (
-            <BuyTab
-              papers={papersByCompony}
-              onPress={onPress}
-              currentPaper={currentPaper}
-            />
-          )}
-        />
-      </Tab.Navigator>
-    </Dialog.Container>
+    <Tab.Navigator>
+      <Tab.Screen
+        name={'Продать'}
+        children={() => (
+          <SellTab
+            papers={papersByCompony}
+            onPress={onPress}
+            currentPaper={currentPaper}
+          />
+        )}
+      />
+      <Tab.Screen
+        name={'Купить'}
+        children={() => (
+          <BuyTab
+            papers={papersByCompony}
+            onPress={onPress}
+            currentPaper={currentPaper}
+          />
+        )}
+      />
+    </Tab.Navigator>
   );
 };
 export default TradeDialog;

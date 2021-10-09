@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   goal: {
     flexDirection: 'row',
     alignContent: 'space-between',
-    marginBottom: 25,
+    marginBottom: 15,
   },
   goalCaption: {
     color: '#fff',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   progressBar: {
-    marginBottom: 25,
+    marginBottom: 15,
   },
   goalRight: {
     marginLeft: 'auto',
@@ -54,7 +54,7 @@ const Dashboard: React.FunctionComponent<Props> = ({money, moneyGoal}) => {
     <View style={styles.container}>
       <View style={styles.goal}>
         <View style={styles.goalLeft}>
-          <IconHouse width={48} height={48} />
+          <IconHouse width={32} height={32} />
           <Text style={styles.goalCaption}>House</Text>
         </View>
         <View style={styles.goalRight}>

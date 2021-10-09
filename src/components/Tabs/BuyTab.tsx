@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontSize: 18,
   },
 });
 
@@ -43,6 +42,7 @@ const BuyTab: React.FunctionComponent<Props> = ({
         style={{height: 50}}
       />
       <Dialog.Button
+
         label="Совершить сделку"
         onPress={() => {
           user.buyPaper(currentPaper, amount);
