@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import ItemGoal from '../components/ItemGoal';
 import Slider from '@react-native-community/slider';
-import { useNavigation } from "@react-navigation/native";
+import {useNavigation} from '@react-navigation/native';
 
 interface Props {}
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
   titleText: {
     color: '#C2D4EF',
-    fontSize: 32,
+    fontSize: 18,
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     lineHeight: 40,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   textWelcome: {
     flexWrap: 'wrap',
     color: '#C2D4EF',
-    fontSize: 32,
+    fontSize: 18,
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     lineHeight: 40,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 40,
     backgroundColor: '#7EABF0',
-    borderRadius: 20
+    borderRadius: 20,
   },
   slider: {
     width: '90%',
@@ -121,7 +121,7 @@ const InitScreen: React.FunctionComponent<Props> = () => {
       goal: '100 000',
     },
   ];
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <View style={styles.logo}>
@@ -167,7 +167,11 @@ const InitScreen: React.FunctionComponent<Props> = () => {
         </View>
       </View>
 
-      <Button style={styles.button} title="Начинаем" onPress={() => navigation.navigate('MythsScreen')} />
+      <Button
+        style={styles.button}
+        title="Начинаем"
+        onPress={() => navigation.navigate('MythsScreen')}
+      />
     </ScrollView>
   );
 };
