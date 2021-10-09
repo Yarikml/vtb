@@ -6,12 +6,13 @@ import {
   TextInput,
   ScrollView,
   Button,
-  Pressable,
+  Pressable, TouchableOpacity,
 } from 'react-native';
 import ItemGoal from '../components/ItemGoal';
 import MyButton from '../components/Button';
 import Slider from '@react-native-community/slider';
 import {useNavigation} from '@react-navigation/native';
+import {inject, observer} from "mobx-react";
 
 import Logo from '../assets/logo.svg';
 import Back from '../assets/back.svg';
@@ -19,8 +20,11 @@ import Animated from 'react-native-reanimated';
 
 import {useState} from 'react';
 import MythCard from '../components/MythCard';
+import UserStore from '../stores/UserStore';
 
-interface Props {}
+interface Props {
+  user: UserStore
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -92,6 +96,12 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     paddingBottom: 15,
   },
+  sliderText: {
+    color: '#C2D4EF',
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontSize: 16,
+  },
 
   input: {
     width: '90%',
@@ -113,6 +123,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+
   },
 
   button: {
@@ -126,7 +137,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InitScreen: React.FunctionComponent<Props> = () => {
+const InitScreen: React.FunctionComponent<Props> = ({user}) => {
   const goals = [
     {
       id: 1,
@@ -150,7 +161,10 @@ const InitScreen: React.FunctionComponent<Props> = () => {
     },
   ];
   const navigation = useNavigation();
-  const [sliderValue, setSliderValue] = useState(5000);
+  const [sliderValue, setSliderValue] = useState(10000);
+  const [currentGoal, setCurrentGoal] = useState<number>()
+
+
 
   return (
     <ScrollView>
@@ -184,25 +198,30 @@ const InitScreen: React.FunctionComponent<Props> = () => {
         <Text style={styles.text}>С чего начнем?</Text>
         <Slider
           style={styles.slider}
-          minimumValue={1000}
+          minimumValue={5000}
           maximumValue={100000}
           step={1000}
           thumbTintColor="#7EABF0"
           minimumTrackTintColor="#7EABF0"
           maximumTrackTintColor="rgba(126, 171, 240, 0.5)"
           value={sliderValue}
+          onValueChange={(value) => setSliderValue(value)}
         />
+        <Text style={styles.sliderText}>{sliderValue}</Text>
       </View>
 
       <View style={styles.blockQuest}>
         <Text style={styles.text}>Выбери сложность</Text>
         <View style={styles.goals}>
           {goals.map(goalCard => (
-            <ItemGoal
-              id={goalCard.id}
-              idImg={goalCard.imgId}
-              goal={goalCard.goal}
-            />
+              <TouchableOpacity onPress={() => setCurrentGoal(goalCard.id)}>
+                <ItemGoal
+                    isSelected={currentGoal === goalCard.id}
+                    key={goalCard.id}
+                    idImg={goalCard.imgId}
+                    goal={goalCard.goal}
+                />
+              </TouchableOpacity>
           ))}
         </View>
       </View>
@@ -211,5 +230,5 @@ const InitScreen: React.FunctionComponent<Props> = () => {
     </ScrollView>
   );
 };
-export default InitScreen;
+export default inject('user')(observer(InitScreen));
 //цель - достичь инвестиционной выгоды быстрее соперника
