@@ -11,12 +11,16 @@ import type {Node} from 'react';
 import {SafeAreaView, View, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Navigator from '../../vtb/src/Navigator';
+import {Provider} from 'mobx-react';
+import {stores} from './stores/Stores';
 
 const App: () => Node = () => {
   return (
-    <NavigationContainer>
-      <Navigator />
-    </NavigationContainer>
+    <Provider {...stores}>
+      <NavigationContainer>
+        <Navigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
