@@ -6,12 +6,18 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import Helper from '../components/Helper';
+import Background from "../assets/backgroundCardSetSelector.svg";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#172030',
     padding: 16,
 
+  },
+  background: {
+    position:'absolute',
+    width: '100%',
+    height: '100%',
   },
   animated: {
     position: 'absolute',
@@ -27,7 +33,9 @@ const styles = StyleSheet.create({
     justifyContent:'space-between'
   },
   text: {
-    textAlign: 'left',
+    marginTop:24,
+    paddingTop:64,
+    textAlign: 'center',
     color: '#C2D4EF',
     fontSize: 20,
     lineHeight: 24,
@@ -82,23 +90,21 @@ const CardSetSelector: React.FunctionComponent = () => {
 
   return (
     <View style={styles.container}>
+      <Background style={styles.background}/>
       <View style={styles.rules}>
         <View>
-          <Text style={styles.textTitle}>Давай попробуем понять, что такое акции и облигации.</Text>
-          <Text style={styles.text}>Ниже ты найдешь два мини приложения, что помогут тебе войти в мир инвестиций.
-            Эти инструменты не взаимоисключаемы, но мы их разделили, чтобы более точно донести идею каждого.</Text>
+          <Text style={styles.textTitle}>Что нужно делать?</Text>
+          <Text style={styles.text}>Правила просты:{'\n'} попробуй себя в любой роли.</Text>
         </View>
 
         <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
           <View style={styles.cardGame}>
-            <Text style={styles.textCard}>Хочу
-              скупать
-              акции</Text>
+            <Text style={styles.textCard}>"Трейдер"</Text>
+            <Text style={styles.textCard}>если любишь риски</Text>
           </View>
           <View style={styles.cardGame}>
-            <Text style={styles.textCard}>Хочу
-              вложиться
-              в облигации</Text>
+            <Text style={styles.textCard}>"Инвестор"</Text>
+            <Text style={styles.textCard}>если любишь расчеты</Text>
           </View>
         </View>
       </View>
