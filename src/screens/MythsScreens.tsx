@@ -13,15 +13,26 @@ import {useNavigation} from '@react-navigation/native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 140,
     backgroundColor: '#172030',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
+
+    justifyContent:'space-between',
+    padding: 16,
   },
+
   text: {
-    color: 'red',
+    flexWrap: 'wrap',
+    color: '#C2D4EF',
+    fontSize: 24,
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    lineHeight: 40,
+    letterSpacing: 0,
+  },
+  textView: {
+    paddingBottom:36,
+    alignItems:'center',
   },
   animated: {
     position: 'absolute',
@@ -40,17 +51,22 @@ const MythsScreens: React.FunctionComponent = () => {
   const myths = [
     {
       id: 1,
-      text: 'Инвестциии - это сложно',
+      text: '..большой стартовый капитал?',
       icon: 'df',
     },
     {
       id: 2,
-      text: 'Я могу всё потерять - это опано для моего капиала',
+      text: '..сложно и непонятно?',
       icon: 'df',
     },
     {
       id: 3,
-      text: 'Этим занимаются только те, у кого есть деньги',
+      text: '..это много времени?',
+      icon: 'df',
+    },
+    {
+      id: 4,
+      text: '..опасно?',
       icon: 'df',
     },
   ];
@@ -68,14 +84,24 @@ const MythsScreens: React.FunctionComponent = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.animated, defaultSpringStyles]}>
-        <Helper text={'Hello, I think that many people have bounds in inv'} />
-      </Animated.View>
-      {myths.map(myth => (
-        <MythCard key={myth.id} icon={myth.icon} text={myth.text} />
-      ))}
+
+      <View style={styles.textView}>
+        <Text style={styles.text}>
+          Ты тоже думаешь,
+        </Text>
+        <Text style={styles.text}>
+          что инвестиции - это...
+        </Text>
+      </View>
+      <View style={styles.textView}>
+        {myths.map(myth => (
+            <MythCard key={myth.id} icon={myth.icon} text={myth.text} />
+        ))}
+      </View>
+
+
       <Button
-        title={'push'}
+        title={'А так ли на самом деле?'}
         onPress={() => {
           requestAnimationFrame(() => {
             offset.value = -80;

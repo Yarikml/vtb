@@ -17,8 +17,7 @@ interface Props {}
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#172030',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    padding: 16,
   },
 
   logo: {
@@ -32,13 +31,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: 10,
-    paddingTop: 100,
+    paddingTop: 80,
     paddingBottom: 40,
   },
 
   titleText: {
     color: '#C2D4EF',
-    fontSize: 18,
+    fontSize: 24,
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     lineHeight: 40,
@@ -49,17 +48,19 @@ const styles = StyleSheet.create({
   textWelcome: {
     flexWrap: 'wrap',
     color: '#C2D4EF',
-    fontSize: 18,
     fontFamily: 'Roboto',
     fontStyle: 'normal',
-    lineHeight: 40,
-    letterSpacing: 0,
+
+    textAlign: 'center',
+    paddingLeft: 25,
+    fontSize: 28,
+    lineHeight: 36,
   },
 
   blockQuest: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     paddingTop: 40,
     paddingBottom: 40,
   },
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 28,
-    lineHeight: 42,
+    lineHeight: 36,
     paddingLeft: 25,
   },
 
@@ -168,7 +169,7 @@ const InitScreen: React.FunctionComponent<Props> = () => {
       </View>
 
       <Button
-        style={styles.button}
+
         title="Начинаем"
         onPress={() => navigation.navigate('MythsScreen')}
       />

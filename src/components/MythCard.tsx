@@ -11,20 +11,20 @@ interface Props {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: '80%',
+    width: '100%',
     padding: 16,
     backgroundColor: '#234171',
     borderRadius: 10,
     flexDirection: 'row',
     flexGrow: 0,
     alignItems: 'center',
-    marginBottom: 10
+    marginBottom: 32,
   },
   text: {
     fontSize: 18,
     flex: 1,
-    marginLeft: 10,
-    color: '#fff'
+    marginLeft: 24,
+    color: '#E6EFFE'
   }
 })
 
