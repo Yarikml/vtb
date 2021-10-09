@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from "react";
 import {StyleSheet, Text, View} from 'react-native';
 import IconHouse from '../assets/iconHouse.svg';
 import * as Progress from 'react-native-progress';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -60,6 +61,8 @@ const Dashboard: React.FunctionComponent<Props> = ({money, moneyGoal}) => {
           <Text style={styles.goalCaption}>10 млн</Text>
         </View>
       </View>
+
+
       <Progress.Bar
         style={styles.progressBar}
         progress={getProgress(money, moneyGoal)}

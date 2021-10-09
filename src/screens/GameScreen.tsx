@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Dashboard from '../components/Dashboard';
 import BottomPanel from '../components/BottomPanel';
 import {inject, observer} from 'mobx-react';
-import UserStore from '../stores/UserStore';
+import UserStore, {Paper} from '../stores/UserStore';
+import Dialog from 'react-native-dialog';
+import TradeDialog from '../components/TradeDialog';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,37 +24,46 @@ interface Props {
 }
 
 const GameScreen: React.FunctionComponent<Props> = ({user}) => {
+  const [isVisible, setVisible] = useState<boolean>(false);
+  const [currentPaper, setPaper] = useState<Paper>(user.userPapers[0]);
   return (
     <View style={styles.container}>
       <Dashboard money={user.money} moneyGoal={user.moneyGoal} />
-      <View style={styles.gameScreen}>
-        <Button
-          title={'Tesla'}
-          onPress={() =>
-            user.addPaperToUser({company: 'Tesla', price: Math.random() * 100})
-          }
-        />
-        <Button
-          title={'Sber'}
-          onPress={() =>
-            user.addPaperToUser({company: 'Sber', price: Math.random() * 100})
-          }
-        />
 
-        <Button
-          title={'Dogi'}
-          onPress={() =>
-            user.addPaperToUser({company: 'Dogi', price: Math.random() * 100})
-          }
-        />
-        <Button
-          title={'Inu'}
-          onPress={() =>
-            user.addPaperToUser({company: 'Inu', price: Math.random() * 100})
-          }
-        />
-        <Text style={{color: 'black'}}>{JSON.stringify(user.userPapers)}</Text>
+      <View style={styles.gameScreen}>
+        <TouchableOpacity
+          key={1}
+          onPress={() => {
+            setPaper({company: 'Tesla', price: Math.random() * 100});
+            setVisible(true);
+          }}>
+          <Text>Tesla</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          key={2}
+          onPress={() => {
+            setPaper({company: 'Dogi', price: Math.random() * 100});
+            setVisible(true);
+          }}>
+          <Text>Dogi</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          key={3}
+          onPress={() => {
+            setPaper({company: 'VTB', price: Math.random() * 100});
+            setVisible(true);
+          }}>
+          <Text>VTB</Text>
+        </TouchableOpacity>
+
+        <Text>{JSON.stringify(user.userPapers)}</Text>
       </View>
+      <TradeDialog
+        papersByCompony={user.filterByCompany(currentPaper.company)}
+        isVisible={isVisible}
+        onPress={() => setVisible(false)}
+        currentPaper={currentPaper}
+      />
       <BottomPanel userPapers={user.userPapers} companies={user.getCompanies} />
     </View>
   );

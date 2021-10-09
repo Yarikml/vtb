@@ -48,7 +48,7 @@ const BottomPanel: React.FunctionComponent<Props> = ({
           companyPrises.reduce((acc, cur) => acc + cur) / companyPrises.length;
 
         return (
-          <View style={styles.companyItem}>
+          <View key={company} style={styles.companyItem}>
             <View style={styles.companyLogo}>
               <Text>{company}</Text>
             </View>
