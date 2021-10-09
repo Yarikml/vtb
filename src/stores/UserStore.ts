@@ -70,6 +70,5 @@ class UserStore {
   public get getCompanies(): string[] {
     return Array.from(this.companies);
   }
-
 }
 export default UserStore;
