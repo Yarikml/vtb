@@ -5,8 +5,8 @@ import Helper from '../components/Helper';
 
 import {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import MyButton from "../components/Button";
-import Background from "../assets/backgroundMythScreen.svg";
+import MyButton from '../components/Button';
+import Background from '../assets/backgroundMythScreen.svg';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,15 +17,15 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   background: {
-    position:'absolute',
+    position: 'absolute',
     width: '100%',
     height: '100%',
   },
   textTitle: {
-    marginHorizontal:24,
-    paddingBottom:36,
-    marginTop:12,
-    alignItems:'center',
+    marginHorizontal: 24,
+    paddingBottom: 36,
+    marginTop: 12,
+    alignItems: 'center',
   },
   text: {
     flexWrap: 'wrap',
@@ -37,12 +37,11 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
   },
   textView: {
-    marginHorizontal:24,
-    paddingBottom:36,
-    marginTop:24,
-    alignItems:'center',
+    marginHorizontal: 24,
+    paddingBottom: 36,
+    marginTop: 24,
+    alignItems: 'center',
   },
-
 });
 
 const MythsScreens: React.FunctionComponent = () => {
@@ -69,27 +68,24 @@ const MythsScreens: React.FunctionComponent = () => {
     },
   ];
 
-
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Background style={styles.background}/>
+      <Background style={styles.background} />
       <View style={styles.textTitle}>
-        <Text style={styles.text}>
-          Ты тоже думаешь,
-        </Text>
-        <Text style={styles.text}>
-          что инвестиции - это...
-        </Text>
+        <Text style={styles.text}>Ты тоже думаешь,</Text>
+        <Text style={styles.text}>что инвестиции - это...</Text>
       </View>
       <View style={styles.textView}>
         {myths.map(myth => (
-            <MythCard key={myth.id} icon={1} text={myth.text} />
+          <MythCard key={myth.id} icon={1} text={myth.text} />
         ))}
       </View>
 
-      <MyButton nextState={'TruthScreen'} text={'А так ли это на самом деле?'}/>
-
+      <MyButton
+        nextState={'TruthScreen'}
+        text={'А так ли это на самом деле?'}
+      />
     </View>
   );
 };

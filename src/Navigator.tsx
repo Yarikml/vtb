@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 
 const Navigator: React.FunctionComponent = () => {
   return (
-    <Stack.Navigator initialRouteName={'Init'}>
+    <Stack.Navigator initialRouteName={'GameScreen'}>
       <Stack.Screen
         name={'Init'}
         component={InitScreen}
