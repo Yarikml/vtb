@@ -1,7 +1,13 @@
 import {View, Image, Text, StyleSheet} from "react-native";
 import * as React from "react";
 
+import ImgAuto from "../assets/goals/auto.svg"
+import ImgHouse from "../assets/goals/house.svg"
+import ImgStudy from "../assets/goals/study.svg"
+import ImgMonitor from "../assets/goals/monitor.svg"
+
 interface Props {
+    idImg: number
     goal: string
 }
 
@@ -35,15 +41,20 @@ const styles = StyleSheet.create({
     },
 })
 
-const ItemGoal: React.FunctionComponent<Props> = ({goal}) => {
+const ItemGoal: React.FunctionComponent<Props> = ({idImg, goal}) => {
+
+
     return (
        <View style={styles.goal}>
-           <Image
-               style={styles.image}
-               source={{
-                   uri: 'https://reactnative.dev/img/tiny_logo.png',
-               }}
-           />
+
+           {{
+               1: <ImgMonitor width={45} height={40}/>,
+               2: <ImgStudy width={45} height={40}/>,
+               3: <ImgAuto width={45} height={40}/>,
+               4: <ImgHouse width={45} height={40}/>,
+           }[idImg]
+           }
+
            <Text style={styles.text}>{goal}</Text>
        </View>
     )

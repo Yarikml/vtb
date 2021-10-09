@@ -5,7 +5,7 @@ import MythRich from "../assets/mythKnowledge.svg"
 
 
 interface Props {
-  icon: any,
+  icon: string,
   text: string
 }
 

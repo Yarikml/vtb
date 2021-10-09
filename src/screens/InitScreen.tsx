@@ -132,19 +132,23 @@ const InitScreen: React.FunctionComponent<Props> = () => {
 
   const goals = [
     {
+      id:1,
       imgId:1,
       goal: '100 000',
     },
     {
+      id:2,
       imgId:2,
       goal: '500 000',
     },
     {
-      imgId:1,
+      id:3,
+      imgId:3,
       goal: '1 000 000',
     },
     {
-      imgId:2,
+      id:4,
+      imgId:4,
       goal: '7 000 000',
     },
   ];
@@ -197,8 +201,8 @@ const InitScreen: React.FunctionComponent<Props> = () => {
       <View style={styles.blockQuest}>
         <Text style={styles.text}>Выбери сложность</Text>
         <View style={styles.goals}>
-          {goals.map(goal => (
-              <ItemGoal goal={goal.goal} />
+          {goals.map(goalCard => (
+              <ItemGoal idImg={goalCard.imgId} goal={goalCard.goal} />
           ))}
         </View>
       </View>
