@@ -1,5 +1,5 @@
 import * as React from "react";
-import {View, Pressable, Text, StyleSheet} from "react-native";
+import {View, Pressable, Text, StyleSheet, TouchableOpacity} from "react-native";
 
 import {useNavigation} from '@react-navigation/native';
 import {useState} from "react";
@@ -40,11 +40,14 @@ const styles = StyleSheet.create({
 const Button: React.FunctionComponent<Props> = ({nextState, text}) => {
     const navigation = useNavigation();
     return (
-        <Pressable style={styles.button}
-                   onPress={() => navigation.navigate(nextState)}>
+        <TouchableOpacity  style={styles.button}
+                   onPress={() => {navigation.navigate(nextState)}}>
             <Text style={styles.text}>{text}</Text>
-        </Pressable>
+        </TouchableOpacity >
 
     )
 }
+
+
+
 export default Button;

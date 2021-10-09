@@ -9,20 +9,36 @@ import ImgMonitor from "../assets/goals/monitor.svg"
 interface Props {
     idImg: number
     goal: string
+    isSelected: boolean;
 }
 
 
 const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        flexWrap:'wrap',
+
+    },
     goal: {
+        width:150,
         backgroundColor: '#1B2B46',
         padding:10,
-        width:'40%',
         margin: 10,
         alignItems: 'center',
         borderColor: '#326DC6',
         borderWidth: 1,
         borderRadius: 10
 
+    },
+    selectedGoal : {
+        width:150,
+        backgroundColor: '#3A83F1',
+        padding:10,
+        margin: 10,
+        alignItems: 'center',
+        borderColor: '#326DC6',
+        borderWidth: 1,
+        borderRadius: 10
     },
     text:{
         color: '#C2D4EF',
@@ -41,22 +57,22 @@ const styles = StyleSheet.create({
     },
 })
 
-const ItemGoal: React.FunctionComponent<Props> = ({idImg, goal}) => {
-
-
+const ItemGoal: React.FunctionComponent<Props> = ({idImg, goal, isSelected}) => {
     return (
-       <View style={styles.goal}>
+        <View style={styles.container}>
+            <View style={isSelected ? styles.selectedGoal : styles.goal}>
+                {{
+                    1: <ImgMonitor width={45} height={40}/>,
+                    2: <ImgStudy width={45} height={40}/>,
+                    3: <ImgAuto width={45} height={40}/>,
+                    4: <ImgHouse width={45} height={40}/>,
+                }[idImg]
+                }
 
-           {{
-               1: <ImgMonitor width={45} height={40}/>,
-               2: <ImgStudy width={45} height={40}/>,
-               3: <ImgAuto width={45} height={40}/>,
-               4: <ImgHouse width={45} height={40}/>,
-           }[idImg]
-           }
+                <Text style={styles.text}>{goal}</Text>
+            </View>
+        </View>
 
-           <Text style={styles.text}>{goal}</Text>
-       </View>
     )
 }
 export default ItemGoal;

@@ -25,6 +25,8 @@ class UserStore {
       money: observable,
       moneyGoal: observable,
       getCompanies: computed,
+      setMoney: action,
+      setMoneyGoal: action,
     });
   }
   buyPaper(paper: Paper, amount: number) {
@@ -70,5 +72,12 @@ class UserStore {
   public get getCompanies(): string[] {
     return Array.from(this.companies);
   }
+  public setMoney(startMoney: number){
+    this.money = startMoney;
+  }
+   public setMoneyGoal(goal: number){
+    this.moneyGoal = goal;
+  }
+
 }
 export default UserStore;
