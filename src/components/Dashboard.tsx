@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import IconHouse from '../assets/iconHouse.svg';
 import * as Progress from 'react-native-progress';
-
+import {goals} from '../screens/InitScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,35 +37,43 @@ const styles = StyleSheet.create({
   moneyText: {
     color: '#fff',
   },
+  name: {
+    color: '#fff'
+  }
 });
 
 interface Props {
   money: number;
   moneyGoal: number;
+  name: string
 }
 
-const Dashboard: React.FunctionComponent<Props> = ({money, moneyGoal}) => {
+const Dashboard: React.FunctionComponent<Props> = ({money, moneyGoal,name}) => {
   const getProgress = (money: number, moneyGoal: number): number => {
     let progress = (money * 100) / moneyGoal / 100;
     return progress;
   };
+
+  const getGoal = goals.find(item => item.id === moneyGoal);
 
   return (
     <View style={styles.container}>
       <View style={styles.goal}>
         <View style={styles.goalLeft}>
           <IconHouse width={32} height={32} />
-          <Text style={styles.goalCaption}>House</Text>
+          <Text style={styles.goalCaption}>{getGoal!.caption}</Text>
+        </View>
+        <View style={styles.name}>
+          <Text>{name}</Text>
         </View>
         <View style={styles.goalRight}>
-          <Text style={styles.goalCaption}>10 млн</Text>
+          <Text style={styles.goalCaption}>{getGoal!.goal}</Text>
         </View>
       </View>
 
-
       <Progress.Bar
         style={styles.progressBar}
-        progress={getProgress(money, moneyGoal)}
+        progress={getProgress(money, getGoal!.goal)}
         width={null}
         color={'blue'}
       />

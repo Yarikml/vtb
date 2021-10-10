@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import UserStore, {Paper} from '../../stores/UserStore';
 import Slider from '@react-native-community/slider';
 import Dialog from 'react-native-dialog';
@@ -15,11 +15,10 @@ interface Props {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#1B2B46',
     justifyContent: 'center',
   },
-  text: {
-  },
+  text: {paddingLeft: 16, color: '#C2D4EF'},
 });
 
 const BuyTab: React.FunctionComponent<Props> = ({
@@ -33,8 +32,7 @@ const BuyTab: React.FunctionComponent<Props> = ({
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Сколько хотите купить?</Text>
-      <Text>{amount}</Text>
-      <Text>{JSON.stringify(currentPaper)}</Text>
+      <Text style={styles.text}>{amount}</Text>
       <Slider
         onValueChange={value => setAmount(Math.round(value))}
         minimumValue={0}
@@ -42,13 +40,13 @@ const BuyTab: React.FunctionComponent<Props> = ({
         style={{height: 50}}
       />
       <Dialog.Button
-
         label="Совершить сделку"
         onPress={() => {
           user.buyPaper(currentPaper, amount);
-          setAmount(0)
+          setAmount(0);
           onPress();
         }}
+        style={styles.text}
       />
     </View>
   );

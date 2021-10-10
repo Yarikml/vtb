@@ -28,7 +28,11 @@ const TradeDialog: React.FunctionComponent<Props> = ({
   currentPaper,
 }) => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarLabelStyle: {fontSize: 12, color: '#C2D4EF'},
+        tabBarStyle: {backgroundColor: '#1B2B46'},
+      }}>
       <Tab.Screen
         name={'Продать'}
         children={() => (

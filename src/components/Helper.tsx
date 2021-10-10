@@ -15,17 +15,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     width: 48,
     height: 48,
-    borderRadius: 50
+    borderRadius: 50,
   },
   message: {
     padding: 16,
-    backgroundColor: 'blue',
+    backgroundColor: '#C2D4EF',
     marginLeft: 12,
     position: "relative",
     maxWidth: '80%',
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
     borderBottomLeftRadius: 5,
+
+
 
 
   },
@@ -36,11 +38,12 @@ const styles = StyleSheet.create({
     left: -7,
     borderWidth: 7,
     borderTopWidth: 7,
-    borderTopColor: 'blue',
-    borderColor: 'transparent'
+    borderTopColor: '#1B2B46',
+    borderColor: 'transparent',
+
   },
   text: {
-    color: '#fff'
+    color: '#1B2B46'
   }
 })
 const Helper: React.FunctionComponent<Props> = ({text}) => {

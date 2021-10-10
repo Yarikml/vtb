@@ -1,35 +1,20 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  Button,
-  Share,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Button, Share, StyleSheet, Text, View} from 'react-native';
 import Dashboard from '../components/Dashboard';
 import BottomPanel from '../components/BottomPanel';
 import {inject, observer} from 'mobx-react';
 import UserStore, {Paper} from '../stores/UserStore';
-import Dialog from 'react-native-dialog';
 import TradeDialog from '../components/TradeDialog';
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
 import PaperBall from '../components/Paper';
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#172030',
     flexDirection: 'column',
   },
   gameScreen: {
-    backgroundColor: 'white',
+    backgroundColor: '#172030',
     flex: 1,
     alignItems: 'center',
     position: 'relative',
@@ -65,7 +50,6 @@ const GameScreen: React.FunctionComponent<Props> = ({user}) => {
       price: Math.random() * 100,
     },
   ]);
-  //генерация - массив
   const curs = [
     {
       company: 'Tesla',
@@ -90,31 +74,18 @@ const GameScreen: React.FunctionComponent<Props> = ({user}) => {
       clearTimeout(timerId);
     };
   });
-  const onShare = async () => {
-    try {
-      const result = await Share.share({
-        message:
-          'React Native | A framework for building native apps using React',
-      });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {}
-  };
+
 
   return (
     <View style={styles.container}>
-      <Dashboard money={user.money} moneyGoal={user.moneyGoal} />
-      <BottomPanel userPapers={user.userPapers} companies={user.getCompanies} />
+      <Dashboard
+        money={user.money}
+        moneyGoal={user.moneyGoal}
+        name={user.name}
+      />
 
       <View style={styles.gameScreen}>
-        <Text>{currentPaper.company}</Text>
+        <Text style={{ color: '#C2D4EF'}}>{currentPaper.company}</Text>
 
         {balls.map(ball => (
           <PaperBall
@@ -132,6 +103,12 @@ const GameScreen: React.FunctionComponent<Props> = ({user}) => {
         isVisible={isVisible}
         onPress={() => setVisible(false)}
         currentPaper={currentPaper}
+        children={() => (
+          <BottomPanel
+            userPapers={user.userPapers}
+            companies={user.getCompanies}
+          />
+        )}
       />
     </View>
   );

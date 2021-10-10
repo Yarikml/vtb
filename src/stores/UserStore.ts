@@ -16,9 +16,12 @@ class UserStore {
   public companies: Set<string> = new Set<string>();
   public money: number = 1000;
   public moneyGoal: number = 10000;
+  public name: string = ''
   constructor() {
     makeObservable(this, {
       userPapers: observable,
+      name: observable,
+      setName: action,
       buyPaper: action,
       sellPaper: action,
       companies: observable,
@@ -28,6 +31,15 @@ class UserStore {
       setMoney: action,
       setMoneyGoal: action,
     });
+  }
+  public setName(name: string) {
+    this.name = name;
+  }
+  public setMoney(startMoney: number) {
+    this.money = startMoney;
+  }
+  public setMoneyGoal(goal: number) {
+    this.moneyGoal = goal;
   }
   buyPaper(paper: Paper, amount: number) {
     this.companies.add(paper.company);
@@ -53,8 +65,8 @@ class UserStore {
       companyPapers.pop();
     }
 
-    let result = [...filtered, companyPapers]
-    this.userPapers = result
+    let result = [...filtered, companyPapers];
+    this.userPapers = result;
     this.companies.add(paper.company);
     this.userPapers.push(paper);
   }
@@ -72,12 +84,5 @@ class UserStore {
   public get getCompanies(): string[] {
     return Array.from(this.companies);
   }
-  public setMoney(startMoney: number){
-    this.money = startMoney;
-  }
-   public setMoneyGoal(goal: number){
-    this.moneyGoal = goal;
-  }
-
 }
 export default UserStore;

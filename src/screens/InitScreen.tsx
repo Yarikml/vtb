@@ -5,25 +5,21 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  Button,
-  Pressable, TouchableOpacity,
+  TouchableOpacity,
 } from 'react-native';
 import ItemGoal from '../components/ItemGoal';
 import MyButton from '../components/Button';
 import Slider from '@react-native-community/slider';
-import {useNavigation} from '@react-navigation/native';
-import {inject, observer} from "mobx-react";
+import {inject, observer} from 'mobx-react';
 
 import Logo from '../assets/logo.svg';
 import Back from '../assets/back.svg';
-import Animated from 'react-native-reanimated';
 
 import {useState} from 'react';
-import MythCard from '../components/MythCard';
 import UserStore from '../stores/UserStore';
 
 interface Props {
-  user: UserStore
+  user: UserStore;
 }
 
 const styles = StyleSheet.create({
@@ -123,7 +119,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-
   },
 
   button: {
@@ -137,34 +132,37 @@ const styles = StyleSheet.create({
   },
 });
 
+export const goals = [
+  {
+    id: 1,
+    imgId: 1,
+    goal: 100000,
+    caption: 'PC',
+  },
+  {
+    id: 2,
+    imgId: 2,
+    goal: 500000,
+    caption: 'Обучение',
+  },
+  {
+    id: 3,
+    imgId: 3,
+    goal: 1000000,
+    caption: 'Машина',
+  },
+  {
+    id: 4,
+    imgId: 4,
+    goal: 7000000,
+    caption: 'House',
+  },
+];
+
 const InitScreen: React.FunctionComponent<Props> = ({user}) => {
-  const goals = [
-    {
-      id: 1,
-      imgId: 1,
-      goal: '100 000',
-    },
-    {
-      id: 2,
-      imgId: 2,
-      goal: '500 000',
-    },
-    {
-      id: 3,
-      imgId: 3,
-      goal: '1 000 000',
-    },
-    {
-      id: 4,
-      imgId: 4,
-      goal: '7 000 000',
-    },
-  ];
-  const navigation = useNavigation();
   const [sliderValue, setSliderValue] = useState(10000);
-  const [currentGoal, setCurrentGoal] = useState<number>()
-
-
+  const [currentGoal, setCurrentGoal] = useState<number>(1);
+  const [text, setText] = useState<string>('');
 
   return (
     <ScrollView>
@@ -186,8 +184,9 @@ const InitScreen: React.FunctionComponent<Props> = ({user}) => {
       <View style={styles.blockQuest}>
         <Text style={styles.text}>Как тебя зовут?</Text>
         <TextInput
+          onChangeText={value => setText(value)}
           style={styles.input}
-          placeholder="Enter your name"
+          placeholder="Ведите Ваше имя"
           placeholderTextColor="#C2D4EF"
           maxLength={15}
           textAlign={'center'}
@@ -205,7 +204,7 @@ const InitScreen: React.FunctionComponent<Props> = ({user}) => {
           minimumTrackTintColor="#7EABF0"
           maximumTrackTintColor="rgba(126, 171, 240, 0.5)"
           value={sliderValue}
-          onValueChange={(value) => setSliderValue(value)}
+          onValueChange={value => setSliderValue(value)}
         />
         <Text style={styles.sliderText}>{sliderValue}</Text>
       </View>
@@ -214,21 +213,28 @@ const InitScreen: React.FunctionComponent<Props> = ({user}) => {
         <Text style={styles.text}>Выбери сложность</Text>
         <View style={styles.goals}>
           {goals.map(goalCard => (
-              <TouchableOpacity onPress={() => setCurrentGoal(goalCard.id)}>
-                <ItemGoal
-                    isSelected={currentGoal === goalCard.id}
-                    key={goalCard.id}
-                    idImg={goalCard.imgId}
-                    goal={goalCard.goal}
-                />
-              </TouchableOpacity>
+            <TouchableOpacity onPress={() => setCurrentGoal(goalCard.id)}>
+              <ItemGoal
+                isSelected={currentGoal === goalCard.id}
+                key={goalCard.id}
+                idImg={goalCard.imgId}
+                goal={goalCard.goal}
+              />
+            </TouchableOpacity>
           ))}
         </View>
       </View>
 
-      <MyButton nextState={'MythsScreen'} text={'Начинаем'} />
+      <MyButton
+        onPress={() => {
+          user.setMoney(sliderValue);
+          user.setMoneyGoal(currentGoal);
+          user.setName(text);
+        }}
+        nextState={'CardSetSelector'}
+        text={'Начинаем'}
+      />
     </ScrollView>
   );
 };
 export default inject('user')(observer(InitScreen));
-//цель - достичь инвестиционной выгоды быстрее соперника

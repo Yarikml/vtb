@@ -8,22 +8,24 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 interface Props {
   company: string;
   price: number;
-  onPress: () => void
+  onPress: () => void;
 }
 
 const styles = StyleSheet.create({
   ball: {
-    backgroundColor: 'blue',
+    backgroundColor: '#1B2B46',
     borderRadius: 50,
     position: 'absolute',
     height: 25,
     width: 25,
-    padding: 3,
+    borderColor: '#224273',
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center"
   },
-  icon: {
-    flex: 1,
-    backgroundColor: 'white',
-    borderRadius: 50,
+  text: {
+    color: '#C2D4EF',
+    fontSize: 8,
   },
 });
 
@@ -34,8 +36,8 @@ const Paper: React.FunctionComponent<Props> = ({company, price, onPress}) => {
   const height = useSharedValue(0);
   const width = useSharedValue(0);
 
-  const left = useSharedValue(295);
-  const top = useSharedValue(450);
+  const left = useSharedValue(95);
+  const top = useSharedValue( 50);
 
   useEffect(() => {
     setTimeout(() => {
@@ -76,11 +78,12 @@ const Paper: React.FunctionComponent<Props> = ({company, price, onPress}) => {
     };
   });
   return (
-    <AnimatedTouchable style={[animatedStyles, styles.ball]} onPress={onPress}>
-      <View style={styles.icon}>
-        <Text>
-          {company}, {price}
-        </Text>
+    <AnimatedTouchable style={[animatedStyles]} onPress={onPress}>
+      <View style={styles.ball}>
+        <Text style={styles.text}>{company}</Text>
+      </View>
+      <View style={{top: 25, left: 8}}>
+        <Text style={styles.text}>{Math.floor(price)}</Text>
       </View>
     </AnimatedTouchable>
   );

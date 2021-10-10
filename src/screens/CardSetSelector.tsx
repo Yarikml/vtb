@@ -1,21 +1,22 @@
 import React, {useEffect} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
 } from 'react-native-reanimated';
 import Helper from '../components/Helper';
-import Background from "../assets/backgroundCardSetSelector.svg";
+import Background from '../assets/backgroundCardSetSelector.svg';
+import {useNavigation} from '@react-navigation/native';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#172030',
     padding: 16,
-
   },
   background: {
-    position:'absolute',
+    position: 'absolute',
     width: '100%',
     height: '100%',
   },
@@ -30,11 +31,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginTop: 30,
     alignContent: 'center',
-    justifyContent:'space-between'
+    justifyContent: 'space-between',
   },
   text: {
-    marginTop:24,
-    paddingTop:64,
+    marginTop: 24,
+    paddingTop: 64,
     textAlign: 'center',
     color: '#C2D4EF',
     fontSize: 20,
@@ -49,22 +50,22 @@ const styles = StyleSheet.create({
     lineHeight: 36,
     letterSpacing: 0,
     textAlign: 'center',
-    paddingBottom:64,
+    paddingBottom: 64,
+    marginTop: 20
   },
   cardGame: {
     backgroundColor: '#1B2B46',
-    padding:10,
-    width:'40%',
+    padding: 10,
+    width: 150,
     height: 200,
     margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: '#326DC6',
     borderWidth: 1,
-    borderRadius: 10
-
+    borderRadius: 10,
   },
-  textCard:{
+  textCard: {
     color: '#C2D4EF',
     fontFamily: 'Roboto',
     fontStyle: 'normal',
@@ -72,7 +73,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 24,
   },
-
 });
 
 const CardSetSelector: React.FunctionComponent = () => {
@@ -84,24 +84,33 @@ const CardSetSelector: React.FunctionComponent = () => {
   const offset = useSharedValue(0);
   const defaultSpringStyles = useAnimatedStyle(() => {
     return {
+      zIndex: 100,
       transform: [{translateY: withSpring(offset.value)}],
     };
   });
-
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Background style={styles.background}/>
+      <Animated.View style={[defaultSpringStyles, styles.animated]}>
+        <Helper text={'У тебя всё получится!'} />
+      </Animated.View>
+      <Background style={styles.background} />
       <View style={styles.rules}>
         <View>
           <Text style={styles.textTitle}>Что нужно делать?</Text>
-          <Text style={styles.text}>Правила просты:{'\n'} попробуй себя в любой роли.</Text>
+          <Text style={styles.text}>
+            Правила просты:{'\n'} попробуй себя в любой роли.
+          </Text>
         </View>
 
-        <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-          <View style={styles.cardGame}>
-            <Text style={styles.textCard}>"Трейдер"</Text>
-            <Text style={styles.textCard}>если любишь риски</Text>
-          </View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <TouchableOpacity onPress={() => navigation.navigate('GameScreen')}>
+            <View style={styles.cardGame}>
+              <Text style={styles.textCard}>"Трейдер"</Text>
+              <Text style={styles.textCard}>если любишь риски</Text>
+            </View>
+          </TouchableOpacity>
+
           <View style={styles.cardGame}>
             <Text style={styles.textCard}>"Инвестор"</Text>
             <Text style={styles.textCard}>если любишь расчеты</Text>
